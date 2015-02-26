@@ -7,7 +7,7 @@ set antialias " アンチエイリアス
 set number " 行番号表示
 set visualbell t_vb= " ビープ音なし
 
-colorscheme desert " カラースキーマ
+colorscheme koehler " カラースキーマ
 set columns=120 " 横幅
 set lines=45 " 行数
 

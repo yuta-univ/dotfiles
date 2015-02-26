@@ -19,6 +19,9 @@ endif
 call neobundle#begin(expand('~/.vim/bundle'))
 let g:neobundle_default_git_protocol='https'
 
+"透過する
+highlight Normal ctermbg=none
+
 " neobundle#begin - neobundle#end の間に導入するプラグインを記載します。
 NeoBundleFetch 'Shougo/neobundle.vim'
 " ↓こんな感じが基本の書き方
@@ -61,8 +64,8 @@ NeoBundle('vim-scripts/python_match.vim')
 NeoBundle 'nathanaelkane/vim-indent-guides' 
 " vim-indent-guides
 let g:indent_guides_auto_colors=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=110
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=140
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#444433 ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 
@@ -177,8 +180,23 @@ let g:vimfiler_as_default_explorer  = 1
 let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_data_directory       = expand('~/.vim/etc/vimfiler')
 nnoremap <silent><C-u><C-j> :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit -toggle<CR>
+"" 自動起動
+autocmd VimEnter * VimFiler -split -simple -winwidth=30 -no-quit
+"" [:e .]のように気軽に起動できるようにする
+"let g:vimfiler_as_default_explorer = 1
+"" セーフモードの設定(OFF
+"let g:vimfiler_safe_mode_by_default=0
+" netrwは常にtree view
+let g:netrw_liststyle = 3
+" 'v'でファイルを開くときは右側に開く。(デフォルトが左側なので入れ替え)
+let g:netrw_altv = 1
+" 'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
+let g:netrw_alto = 1
+" 'v'や'o'で開かれる新しいウィンドウのサイズを指定する
+let g:netrw_winsize = 80
 " }}}
-"
+"eを押した時新しいタブで開く2015/02/25
+let g:vimfiler_edit_action='tabopen'
 
 NeoBundle 'Townk/vim-autoclose'
 
